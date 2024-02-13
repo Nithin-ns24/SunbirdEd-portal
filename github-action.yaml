@@ -1,1 +1,39 @@
-
+name: CI
+ 
+on:
+  pull_request:
+    branches:
+      - github-action-workflow
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout
+      - name: Set up Node.js
+        uses: actions/setup-node
+        with:
+          node-version: '14'
+      - name: Install dependencies
+        run: npm install
+      - name: Build project
+        run: npm run build
+      - name: Analyze code with SonarCloud
+        uses: sonarsource/sonarcloud-github-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_HUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Run Snyk
+        run: npx snyk test
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+     - name: Build Docker image
+       run: docker build -t <docker_hub_username>/<image_name>:<tag> .
+     - name: Push Docker image to Docker Hub
+       run: |
+          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+          docker push <docker_hub_username>/<image_name>:<tag>
+       env:
+         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
