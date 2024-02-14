@@ -1,9 +1,9 @@
-# Dockerfile for the player setup
-FROM node:14.19.0-slim
-RUN useradd -u 1001 -md /home/sunbird sunbird
-WORKDIR /home/sunbird
-COPY --chown=sunbird . /home/sunbird/app_dist/
-USER sunbird
-WORKDIR /home/sunbird/app_dist
-EXPOSE 3000
-CMD ["node", "server.js", "&"]
+FROM node:14-alpine
+WORKDIR /usr/src/app
+COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
+RUN npm install 
+COPY . .
+EXPOSE 3001
+RUN chown -R node /usr/src/app
+USER node
+CMD ["npm", "start"]
