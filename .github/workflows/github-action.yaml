@@ -1,16 +1,16 @@
 name: CI
- 
+
 on:
   pull_request:
     branches:
       - github-action-workflow
- 
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout
+        uses: actions/checkout@v2
       - name: Set up Node.js
         uses: actions/setup-node
         with:
@@ -28,12 +28,14 @@ jobs:
         run: npx snyk test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-     - name: Build Docker image
-       run: docker build -t <docker_hub_username>/<image_name>:latest .
-     - name: Push Docker image to Docker Hub
-       run: |
+      - name: Build Docker image
+        run: docker build -t <docker_hub_username>/<image_name>:latest .
+      - name: Push Docker image to Docker Hub
+        run: |
           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
           docker push <docker_hub_username>/<image_name>:<tag>
-       env:
-         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+    
