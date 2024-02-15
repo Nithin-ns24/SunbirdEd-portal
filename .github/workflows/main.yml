@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - master
+      - 15Feb-ci-1
 
 jobs:
   build:
