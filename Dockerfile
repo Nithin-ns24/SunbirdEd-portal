@@ -1,15 +1,8 @@
 # Dockerfile for the player setup
-FROM node:latest
-
+FROM node:14.19.0-slim
+RUN useradd -u 1001 -m -s /bin/bash sunbird
 WORKDIR /usr/src/app
-
-COPY package.json ./
-
-RUN npm install
-
-COPY . .
-
+COPY --chown=sunbird . .
+USER sunbird
 EXPOSE 4000
-
-CMD ["node", "index.js"]
-
+CMD ["node", "server.js"]
