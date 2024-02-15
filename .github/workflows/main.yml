@@ -29,10 +29,9 @@ jobs:
 
       - name: Analyze code with SonarCloud
         uses: sonarsource/sonarcloud-github-action@v1.8
-        with:
-          github-token: ${{ secrets.GIT_HUB_TOKEN }}
-          project-key: ${{ secrets.SONAR_PROJECT_KEY }}
-          organization: ${{ secrets.SONAR_ORGANIZATION }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_HUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: Run Snyk
         run: npx snyk test
