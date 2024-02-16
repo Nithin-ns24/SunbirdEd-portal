@@ -14,7 +14,7 @@ jobs:
 
       - name: Download and install Java 17
         run: |
-          curl -L https://github.com/AdoptOpenJDK/openjdk17/releases/download/jdk-17.0.5/OpenJDK17U-jdk-17.0.5-linux-x64.tar.gz -o openjdk.tar.gz
+          curl -L https://github.com/openjdk/jdk17/archive/refs/tags/jdk-17+35.tar.gz -o openjdk.tar.gz
           tar -xzf openjdk.tar.gz
           export JAVA_HOME=/path/to/extracted/jdk-17.0.5
           export PATH=$JAVA_HOME/bin:$PATH
