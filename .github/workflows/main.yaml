@@ -6,18 +6,13 @@ on:
       - 16Feb-ci-1
 
 jobs:
-  build-and-analyze:
+  sonarcloud:
+    name: SonarCloud
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Download and install Java 17
-        run: |
-          curl -L https://github.com/openjdk/jdk17/archive/refs/tags/jdk-17+35.tar.gz -o openjdk.tar.gz
-          tar -xzf openjdk.tar.gz
-          export JAVA_HOME=/path/to/extracted/jdk-17.0.5
-          export PATH=$JAVA_HOME/bin:$PATH
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 
 
       - name: Build Docker image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ secrets.IMAGE_NAME }}:latest .
