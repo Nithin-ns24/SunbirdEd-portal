@@ -20,4 +20,5 @@ jobs:
         with:
           args: >
               -Dsonar.organization=Nithin-ns24
-              -Dsonar.projectKey=SunbirdEd-portal 
+              -Dsonar.projectKey=nithin-ns24
+ 
