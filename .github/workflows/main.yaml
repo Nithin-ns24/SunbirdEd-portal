@@ -1,6 +1,9 @@
-name: "sonar_cloud_scan_github_actions"
+name: CI
+
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - 16Feb-ci-1
 
 jobs:
   DemoSonarCloudSCan:
