@@ -19,6 +19,6 @@ jobs:
             SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-              -Dsonar.organization=Nithin-ns24
+              -Dsonar.organization=nithin-ns24
               -Dsonar.projectKey=nithin-ns24
  
