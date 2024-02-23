@@ -23,7 +23,7 @@ jobs:
         args: >
           -Dsonar.organization=nithin-ns24
           -Dsonar.projectKey=SunbirdEd-portal
-      
+          -X
     - name: Build Docker image
       run: docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ secrets.IMAGE_NAME }}:latest .
       env:
