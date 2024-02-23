@@ -21,7 +21,7 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       with:
         args: >
-          -Dsonar.organization=nithin-ns24
+          -Dsonar.organization=Nithin-ns24
           -Dsonar.projectKey=SunbirdEd-portal
           -X
     - name: Build Docker image
