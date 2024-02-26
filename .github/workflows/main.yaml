@@ -23,7 +23,6 @@ jobs:
             -Dsonar.projectKey=sunbirded-portal_sunbirded-portal
             -Dsonar.host.url=https://sonarcloud.io
           token: ${{ secrets.SONAR_TOKEN }}
-          SONAR_DEBUG: -X
         
       - name: Build Docker image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ secrets.IMAGE_NAME }}:latest .
