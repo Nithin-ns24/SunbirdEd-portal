@@ -21,7 +21,7 @@ jobs:
           IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
 
       - name: Run Snyk
-        run: npx snyk test
+        run: npx snyk test --all-projects
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         working-directory: src/app/
