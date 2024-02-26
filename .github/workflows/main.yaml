@@ -20,6 +20,10 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
 
+      - name: Install Dependencies
+        run: npm install
+        working-directory: src/app/
+    
       - name: Run Snyk
         run: npx snyk test --all-projects
         env:
