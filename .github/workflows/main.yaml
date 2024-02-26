@@ -26,6 +26,11 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         working-directory: src/app/
 
+      - name: Debug Workspace
+        run: |
+          ls -la /github/workspace
+          ls -la /github/workspace/src/app
+  
       - name: Push Docker image to Docker Hub
         run: |
           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
