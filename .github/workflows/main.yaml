@@ -24,7 +24,7 @@ jobs:
         run: npx snyk test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        working-directory: src/app/package.json
+        working-directory: src/app/
 
       - name: Push Docker image to Docker Hub
         run: |
