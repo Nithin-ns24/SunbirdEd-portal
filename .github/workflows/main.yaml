@@ -19,18 +19,6 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
-
-      - name: Install Dependencies
-        run: npm install
-        working-directory: src/app/
-
-      - name: Install Canvas Dependencies
-        run: sudo apt-get install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
-        working-directory: src/app/
-
-      - name: Check node-pre-gyp version
-        run: npx node-pre-gyp --version
-        working-directory: src/app/
     
       - name: Run Snyk
         run: npx snyk test --all-projects
