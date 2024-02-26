@@ -15,16 +15,14 @@ jobs:
         with:
           fetch-depth: 0 
 
-      - name: Build and Analyze with SonarCloud
-        run: |
-          ./gradlew build
-          ./gradlew sonarqube \
-            -Dsonar.projectKey=sunbirded-portal_sunbirded-portal \
-            -Dsonar.organization=sunbirded-portal \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@v1
+        with:
+          args: >
+            -Dsonar.organization=sunbirded-portal
+            -Dsonar.projectKey=sunbirded-portal_sunbirded-portal
+            -Dsonar.host.url=https://sonarcloud.io
+          token: ${{ secrets.SONAR_TOKEN }}
           SONAR_DEBUG: -X
         
       - name: Build Docker image
