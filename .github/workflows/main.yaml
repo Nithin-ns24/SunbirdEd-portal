@@ -20,12 +20,12 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
 
-      - uses: actions/checkout@master
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@master
+      - name: Run Snyk
+        run: npx snyk test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-    
+        working-directory: src/app/package.json
+
       - name: Push Docker image to Docker Hub
         run: |
           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
