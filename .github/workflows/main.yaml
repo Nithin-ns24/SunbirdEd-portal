@@ -27,8 +27,10 @@ jobs:
 
       - name: Run Snyk
         run: npx snyk test
+        working-directory: /home/runner/work/SunbirdEd-portal/SunbirdEd-portal
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
 
       - name: Push Docker image to Docker Hub
         run: |
