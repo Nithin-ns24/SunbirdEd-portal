@@ -20,6 +20,7 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
     
+      - uses: actions/checkout@master 
       - name: Run Snyk
         run: npx snyk test --all-projects
         env:
