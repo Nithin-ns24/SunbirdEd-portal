@@ -113,7 +113,7 @@
     "svg2img": "0.6.1",
     "ua-parser-js": "0.7.13",
     "uuid": "3.1.0",
-    "qs": "^6.10.3"
+    "qs": "^6.10.3",
     "uuid-validate": "0.0.3"
   },
   "standard": {
