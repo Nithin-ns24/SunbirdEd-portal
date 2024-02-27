@@ -20,11 +20,14 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
     
+      - name: Install Snyk
+        run: npm install -g snyk
+      
       - name: Run Snyk Scan
+        working-directory: src/app/
         run: npx snyk test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        working-directory: src/app/
 
       - name: Debug Workspace
         run: |
