@@ -16,7 +16,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_HUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
+      
+      - name: Run Synk security scan
+        uses: synk/actions/synk-action@master
+        env:
+          SYNK_TOKEN: ${{ secrets.SYNK_TOKEN }}
+          
       - name: Build Docker image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ secrets.IMAGE_NAME }}:latest .
         env:
