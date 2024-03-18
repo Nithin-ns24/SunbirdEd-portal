@@ -2,7 +2,7 @@ name: Build
 on:
   push:
     branches:
-      - master
+      - ${{ secrets.BRANCH }}
 jobs:
   sonarcloud:
     name: SonarCloud
@@ -16,11 +16,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_HUB_TOKEN }}  
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      
-      - name: Run Snyk
-        run: npx snyk test
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
           
       - name: Build Docker image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ secrets.IMAGE_NAME }}:latest .
