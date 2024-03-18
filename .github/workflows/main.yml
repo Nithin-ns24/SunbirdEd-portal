@@ -1,8 +1,12 @@
 name: Build
 on:
-  push:
-    branches:
-      - ${{ secrets.BRANCH }}
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: branch
+#  push:
+#    branches:
+#     - ${{ secrets.BRANCH }}
 jobs:
   sonarcloud:
     name: SonarCloud
