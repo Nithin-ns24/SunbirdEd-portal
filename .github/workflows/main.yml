@@ -19,11 +19,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GIT_HUB_TOKEN }}  
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           
-  upload-sonar-results:
-    name: Upload Sonar Results to Pixeebot
-    runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'check_run' && github.event.check_run.name == 'SonarCloud Code Analysis' }}
-    steps:
       - name: Upload Sonar Results
         uses: pixee/upload-tool-results-action@v1
         with:
