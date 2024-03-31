@@ -17,16 +17,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GIT_HUB_TOKEN }}  
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           
-      - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ secrets.IMAGE_NAME }}:latest .
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
-
-      - name: Push Docker image to Docker Hub
-        run: |
-          echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
-          docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.IMAGE_NAME }}:latest
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Upload Sonar Results
+        uses: pixee/upload-tool-results-action@v1
+        with:
+          tool: sonar
+          sonar-token: ${{ secrets.SONAR_TOKEN }}
+          sonar-component-key: owner_repo
+          sonar-api-url: https://sonarcloud.io/api
