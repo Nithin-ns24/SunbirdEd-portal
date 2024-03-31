@@ -5,9 +5,6 @@ on:
       branch:
         description: branch
 
-permissions:
-  id-token: write
-
 jobs:
   share:
     name: Upload Sonar Results to Pixeebot
