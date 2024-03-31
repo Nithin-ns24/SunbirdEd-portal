@@ -6,8 +6,6 @@ on:
       branch:
         description: branch
 
-permissions:
-  id-token: write
 
 jobs:
   share:
