@@ -1,7 +1,11 @@
 name: Trivy Scan
 on:
   workflow_dispatch:
-  
+
+permissions:
+  contents: read
+  security-events: write
+
 jobs:
   build:
     name: Build
