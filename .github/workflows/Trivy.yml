@@ -16,7 +16,7 @@ jobs:
 
       - name: Build an image from Dockerfile
         run: |
-          docker build -t nithin246/nodejs-release1:latest .
+          docker build -t nithin246/nodejs-release2:latest .
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
@@ -26,7 +26,7 @@ jobs:
           exit-code: '1'
           ignore-unfixed: true
           vuln-type: 'os,library'
-          format: 'table'
+          format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results.sarif'
           severity: 'CRITICAL,HIGH'
