@@ -16,6 +16,7 @@ jobs:
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
+        continue-on-error: true
         with:
           image-ref: 'nithin246/nodejs-release1:latest'
           exit-code: '1'
@@ -30,3 +31,9 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: 'trivy-results.sarif'
+
+      - name: Fail job if Trivy scan failed
+        if: steps.trivy.outcome == 'failure'
+        run: |
+          echo "Trivy scan found CRITICAL or HIGH vulnerabilities. Failing job."
+          exit 1
