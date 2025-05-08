@@ -22,7 +22,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         continue-on-error: true
         with:
-          image-ref: 'nithin246/nodejs-release1:latest'
+          image-ref: 'nithin246/nodejs-release2:latest'
           exit-code: '1'
           ignore-unfixed: true
           vuln-type: 'os,library'
