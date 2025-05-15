@@ -1,15 +1,21 @@
-name: Example workflow for Node using Snyk
-on: 
- workflow_dispatch:
- 
+name: Snyk Scan for Node.js App
+
+on:
+  workflow_dispatch:
+
 jobs:
   security:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: yarn install # or `npm install` if using npm
+
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --severity-threshold=high
+          args: test --severity-threshold=high --file=package.json --package-manager=yarn
+
