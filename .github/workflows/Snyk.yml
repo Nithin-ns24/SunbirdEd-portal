@@ -1,5 +1,5 @@
-name: workflow for Snyk
-on:
+name: Example workflow for Node using Snyk
+on: 
  workflow_dispatch:
  
 jobs:
@@ -11,3 +11,5 @@ jobs:
         uses: snyk/actions/node@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
