@@ -12,4 +12,4 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --file src/app/package.json --severity-threshold=high
+          args: test --file=src/app/package.json --severity-threshold=high
